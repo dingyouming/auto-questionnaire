@@ -1,0 +1,83 @@
+[tool.poetry]
+name = "auto-questionnaire"
+version = "0.1.0"
+description = "AI驱动的自动问卷填写项目"
+authors = ["Your Name <your.email@example.com>"]
+packages = [
+    { include = "auto_questionnaire", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+groq = "^0.4.2"
+loguru = "^0.7.2"
+python-dotenv = "^1.0.1"
+opencv-python = "^4.9.0"
+numpy = "^2.1.3"
+pandas = "^2.2.3"
+pytesseract = "^0.3.13"
+matplotlib = "^3.9.2"
+seaborn = "^0.13.2"
+jieba = "^0.42.1"
+pytest-asyncio = "^0.24.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-cov = "^4.1.0"
+isort = "^5.13.2"
+pre-commit = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+markers = [
+    "integration: marks tests as integration tests",
+    "performance: marks tests as performance tests",
+    "stress: marks tests as stress tests",
+    "edge: marks tests as edge case tests",
+    "concurrent: marks tests as concurrent"
+]
+addopts = "-v"
+asyncio_mode = "strict"
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*", "**/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError"
+]
+
+[tool.isort]
+profile = "black"  # 使用 black 兼容配置
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 88
+known_first_party = ["auto_questionnaire"]  # 标记我们的内部模块
+sections = [
+    "FUTURE",
+    "STDLIB",
+    "THIRDPARTY",
+    "FIRSTPARTY",
+    "LOCALFOLDER"
+]
+skip = [".venv", "venv", ".git", "__pycache__", "build", "dist"]
+
+[tool.pyright]
+include = ["src", "tests"]
+extraPaths = ["src"]
+reportMissingImports = true
+pythonVersion = "3.12"

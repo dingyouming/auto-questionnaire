@@ -1,0 +1,16 @@
+{
+    "email_recipients": [
+        "admin@example.com",
+        "monitor@example.com"
+    ],
+    "smtp_server": "smtp.example.com",
+    "smtp_port": 587,
+    "smtp_user": "alert@example.com",
+    "smtp_password": "your-password",
+    "alert_thresholds": {
+        "error_rate": 0.1,
+        "api_latency": 5.0,
+        "cache_hit_rate": 0.5,
+        "answer_quality": 0.7
+    }
+} 
